@@ -32,6 +32,9 @@ module Models
         return S, mets, rxns;
     end
 
+    """
+        load a ecoli cor metabolic model, the version 1 (v1)
+    """
     function load_ecoli_v1(; models_dir_path = Pkg.dir() * "/Chemostat/Models/ecoli_v1")
 
         S = CSV.read("$models_dir_path/ecoli_s.csv";
