@@ -1,5 +1,7 @@
 module Chemostat
 
-# package code goes here
+
+        include("Models.jl")
+
 
 end # module

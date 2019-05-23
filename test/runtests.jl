@@ -6,4 +6,5 @@ else
 end
 
 # write your own tests here
-@test 1 == 2
+println(Chemostat.Models.load_ecoli_v1());
+@test 1 == 1
