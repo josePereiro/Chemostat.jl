@@ -8,7 +8,7 @@ using DataFrames;
 """
 function load_toymodel_v1(;M = 1000, Stub = 5, CSe = 10)
 
-    ###  r1  r2  r3  Wt  St ExS ExW Obj Man ##
+    ###  r1  r2  r3  Wt  St ExS ExW Man Obj ##
     S = sparse([-1   0   0   0   1   0   0   0   0  ## S
                  2  -1  -1   0   0   0   0   0   0  ## P
                  0   1   0   1   0   0   0   0   0  ## W
@@ -17,10 +17,10 @@ function load_toymodel_v1(;M = 1000, Stub = 5, CSe = 10)
                  0   0   0   0  -1   1   0   0   0])## Se
 
     rxns = DataFrame();
-    rxns[:id] =          ["r1" , "r2", "r3", "Wt", "St","ExS","ExW","Obj","Man"];
-    rxns[:ub] = Float64.([  M  ,  M  ,  M  ,  M  ,  Stub ,  M  ,  M  ,  M  , 0   ]);
+    rxns[:id] =          ["r1" , "r2", "r3", "Wt", "St","ExS","ExW","Man","Obj"];
+    rxns[:ub] = Float64.([  M  ,  M  ,  M  ,  M  ,  Stub ,  M  ,  M  ,  0  , M   ]);
     rxns[:lb] = Float64.([  0  , -M  ,  0  , -M  ,  -M , -M  , -M  ,  0  , 0   ]);
-    rxns[:ap] = Float64.([ 0.5 , 0.1 ,  15 , 0.1 , 0.1 ,  0  ,  0  ,  0  , 0   ]);
+    rxns[:ap] = Float64.([ 0.5 , 0.1 ,  12 , 0.1 , 0.1 ,  0  ,  0  ,  0  , 0   ]);
     rxns[:an] = Float64.([  0  , 0.1 ,  0  , 0.1 , 0.1 ,  0  ,  0  ,  0  , 0   ]);
     rxns[:t]  =          [  0  ,  0  ,  0  ,  1  ,  1  ,  0  ,  0  ,  0  , 0   ];
 
