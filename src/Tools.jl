@@ -2,15 +2,25 @@ module Tools
 
 using DataFrames;
 
-function log10interval(s::Int,e::Int)::Vector{Float64}
-    @assert s < e;
-    base = collect(1:9);
-    its = log10(e) - s;
-    r = base;
-    for i in 1:its
-        push!(r, (base*(10.0^i))...)
+function logrange(s,b,e)
+    r = Vector{Float64}();
+    v = s;
+    i = 0;
+    while v < e
+        push!(r, collect(b^i:b^i:b^(i+1))...);
+        v = pop!(r)*s;
+        i += 1;
     end
-    return r * 10.0^s;
+    r = r * s;
+
+    rr = Vector{Float64}();
+    for i in 1:length(r)
+        if r[i] <= e
+            push!(rr,r[i])
+        end
+    end
+    last(rr) != e && push!(rr,e)
+    return rr;
 end
 
 export indexof;
