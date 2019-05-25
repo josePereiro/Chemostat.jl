@@ -1,7 +1,8 @@
 module Chemostat
 
-
-        include("Models.jl")
+include("Tools.jl")
+include("Models/Models.jl");
+include("FBA/FBA.jl");
 
 
 end # module
