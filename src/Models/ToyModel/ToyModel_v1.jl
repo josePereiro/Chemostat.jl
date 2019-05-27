@@ -1,6 +1,5 @@
 module ToyModel
 
-using Chemostat.Models;
 using DataFrames;
 
 """
