@@ -1,5 +1,3 @@
-module ToyModel
-
 using DataFrames;
 
 """
@@ -28,6 +26,5 @@ function load_toymodel_v1(;M = 1000, Stub = 5, CSe = 10)
     mets[:c] = Float64.([  0  ,  0  ,  0  ,  0  ,  0   ,  CSe ])
 
     return S, mets, rxns;
-end
 
 end  # module ToyModel
