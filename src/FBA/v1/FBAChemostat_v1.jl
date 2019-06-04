@@ -66,16 +66,15 @@ function fba_chemostat_v1(S, mets, rxns, ξ;
             @constraint(model, nfluxes[ri] >= 0);
             @constraint(model, nfluxes[ri] <= lb);
         end
-
     end
     @constraint(model, ϕ >= 0)
     @constraint(model, ϕ <= ϕub);
 
-    #Info
-    verbose && println(model);
-
     #Objectives
     @objective(model, Max, multi_obj_factor * obj - ϕ);
+
+    #Info
+    verbose && println(model);
 
     #Solving
     solve(model; suppress_warnings = true);
