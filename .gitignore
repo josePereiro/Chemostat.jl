@@ -3,3 +3,5 @@
 *.jl.mem
 
 ModelsData/EColi/\.DS_Store
+
+ModelsData/\.DS_Store
