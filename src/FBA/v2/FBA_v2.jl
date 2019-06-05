@@ -5,6 +5,6 @@ using Chemostat;
 using Chemostat.Tools;
 
 
-include("FBAChemostat_v1.jl");
-include("FBAResult_v1.jl");
+include("FBAChemostat_v2.jl");
+include("FBAResult_v2.jl");
 # include("SteadyState_v1.jl")

@@ -32,12 +32,11 @@ function load_ecoli_v2()
 end
 
 function load_ecoli_dataframes(;model_data_dir = "$(Chemostat.ECOLI_MODELS_DATA_DIR)/$ECOLI_V2_MODEL_DIR_NAME",
-                        subversion_dir = "/v2.3",
                         file_prefix = Chemostat.ECOLI_MODELS_DATA_FILES_PREFIX)
 
-    sto = CSV.read("$model_data_dir/$subversion_dir/$(file_prefix)_s.csv", allowmissing=:none, types=[Int, Int, Float64, String, String]);
-    mets = CSV.read("$model_data_dir/$subversion_dir/$(file_prefix)_mets.csv", allowmissing=:none, types=[String, Float64, Float64, Float64, Float64, Float64]);
-    rxns = CSV.read("$model_data_dir/$subversion_dir/$(file_prefix)_rxns.csv", allowmissing=:none, types=[String, Float64, Float64, Float64, Float64]);
+    sto = CSV.read("$model_data_dir/$(file_prefix)_s.csv", allowmissing=:none, types=[Int, Int, Float64, String, String]);
+    mets = CSV.read("$model_data_dir/$(file_prefix)_mets.csv", allowmissing=:none, types=[String, Float64, Float64, Float64, Float64, Float64]);
+    rxns = CSV.read("$model_data_dir/$(file_prefix)_rxns.csv", allowmissing=:none, types=[String, Float64, Float64, Float64, Float64]);
 
     return sto, mets, rxns
 end

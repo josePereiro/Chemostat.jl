@@ -35,6 +35,7 @@ println("Testing EColi_v2...");
 println("Loading model");
 S ,mets, rxns = Chemostat.v2.Models.EColi.load_ecoli_v2();
 println("Done!!!")
+prin
 
 
 @test 1 == 1

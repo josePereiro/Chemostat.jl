@@ -1,8 +1,8 @@
 module v2
 
-# module FBA
-#     include("FBA/v1/FBA_v1.jl");
-# end  # module FBA
+module FBA
+    include("FBA/v2/FBA_v2.jl");
+end  # module FBA
 
 module Models
     module EColi
