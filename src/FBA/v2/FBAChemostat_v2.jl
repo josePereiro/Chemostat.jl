@@ -1,4 +1,4 @@
-function fba_chemostat(S, mets, rxns, ξ; ϕub = 1.0,
+function fba_chemostat_v2(S, mets, rxns, ξ; ϕub = 1.0,
     multi_obj_factor = 10^5,
     verbose = false)
     @assert all(size(S) .== (size(mets,1),size(rxns,1)));
