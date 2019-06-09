@@ -23,5 +23,4 @@ function load_ecoli_v1(; model_data_dir = "$(Chemostat.ECOLI_MODELS_DATA_DIR)/$E
     rxns = CSV.read("$model_data_dir/$(file_prefix)_rxns.csv";
         delim = ",", allowmissing = :none);
     return sparse(convert(Matrix,S)),mets, rxns;
-
 end

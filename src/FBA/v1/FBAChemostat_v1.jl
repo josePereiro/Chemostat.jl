@@ -1,8 +1,5 @@
 export fba_chemostat_v1;
 function fba_chemostat_v1(S, mets, rxns, ξ;
-        objt_indx = size(rxns,1),
-        man_demand_indx = size(rxns,1) - 1,
-        man_demand_flux_value = 1,
         ϕub::Float64 = 1.0,
         multi_obj_factor = 10^5,
         verbose = false)
@@ -30,14 +27,14 @@ function fba_chemostat_v1(S, mets, rxns, ξ;
         var = @variable(model, basename = "n_$(rxns[:id][r])");
         push!(nfluxes, var);
     end
-    obj = pfluxes[objt_indx];#Biomass production rate
-    main_dem = pfluxes[man_demand_indx];#Maintinance Demand
+    obj = @variable(model,basename = "obj");#Biomass production rate
     ϕ = @variable(model, basename = "ϕ");#Total cost
 
     #constraints
     #Mass balance
     for m in 1:metscount
-        @constraint(model, S[m,:]' * (pfluxes - nfluxes) == 0);
+        @constraint(model, S[m,:]' * (pfluxes - nfluxes) -
+                mets[:y][m] * obj == mets[:e][m]);
     end
 
     #Cost
@@ -54,20 +51,13 @@ function fba_chemostat_v1(S, mets, rxns, ξ;
             ub = min(c / ξ, ub);
         end
 
-        #Maintinance demand
-        if ri == man_demand_indx
-            @constraint(model, pfluxes[ri] >= man_demand_flux_value);
-            @constraint(model, pfluxes[ri] <= man_demand_flux_value);
-            @constraint(model, nfluxes[ri] >= 0);
-            @constraint(model, nfluxes[ri] <= 0);
-        else
-            @constraint(model, pfluxes[ri] >= 0);
-            @constraint(model, pfluxes[ri] <= ub);
-            @constraint(model, nfluxes[ri] >= 0);
-            @constraint(model, nfluxes[ri] <= lb);
-        end
+        @constraint(model, pfluxes[ri] >= 0);
+        @constraint(model, pfluxes[ri] <= ub);
+        @constraint(model, nfluxes[ri] >= 0);
+        @constraint(model, nfluxes[ri] <= lb);
     end
-    @constraint(model, ϕ >= 0)
+    @constraint(model, obj >= 0);
+    @constraint(model, ϕ >= 0);
     @constraint(model, ϕ <= ϕub);
 
     #Objectives
@@ -83,6 +73,6 @@ function fba_chemostat_v1(S, mets, rxns, ξ;
     @assert !isnan(getvalue(obj));
     @assert !isnan(getvalue(ϕ));
 
-    return FBAResult_v1(ξ, model, pfluxes, nfluxes, obj, ϕ, main_dem, S, rxns, mets);
+    return FBAResult_v1(ξ, model, pfluxes, nfluxes, obj, ϕ, S, rxns, mets);
 
 end

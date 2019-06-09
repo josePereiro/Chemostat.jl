@@ -6,15 +6,15 @@ struct FBAResult_v1
     nfluxes::Vector{JuMP.Variable}
     obj::JuMP.Variable
     ϕ::JuMP.Variable
-    main_dem::JuMP.Variable
+    # main_dem::JuMP.Variable
     S::SparseMatrixCSC
     rxns::DataFrame
     mets::DataFrame
 
-    function FBAResult_v1(ξ, model, pfluxes, nfluxes, obj, ϕ, main_dem, S, rxns, mets)
+    function FBAResult_v1(ξ, model, pfluxes, nfluxes, obj, ϕ, S, rxns, mets)
         @assert ξ > 0;
         @assert allunique([rxns[:id];mets[:id]])
-        return new(ξ, model, pfluxes, nfluxes, obj, ϕ, main_dem, S, rxns, mets);
+        return new(ξ, model, pfluxes, nfluxes, obj, ϕ, S, rxns, mets);
     end
 
 end
@@ -35,7 +35,6 @@ end
 export objv,mainv,costv,pfluxesdf,nfluxesdf,xi,indexof,flux;
 
 objv(fbares::FBAResult_v1) = JuMP.getvalue(fbares.obj);
-mainv(fbares::FBAResult_v1) = JuMP.getvalue(fbares.main_dem);
 costv(fbares::FBAResult_v1) = JuMP.getvalue(fbares.ϕ);
 pfluxesdf(fbares::FBAResult_v1) = convert(fbares.pfluxes);
 nfluxesdf(fbares::FBAResult_v1) = convert(fbares.nfluxes);

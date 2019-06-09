@@ -44,7 +44,7 @@ function fba_chemostat_v2(S, mets, rxns, ξ; ϕub = 1.0,
     #Mass Balance constraints
     W = [S            -S             speye(m)   -speye(m)    mets[:y]   spzeros(m)
          rxns[:ap]'    rxns[:an]'    zeros(m)'   zeros(m)'   0          -1        ];
-    b = [mets[:e] ;0];
+    b = [- mets[:e] ;0];
     for i in 1:m + 1
         @constraint(model, W[i,:]' * x == b[i]);
     end

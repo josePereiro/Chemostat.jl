@@ -16,11 +16,9 @@ S ,mets, rxns = Chemostat.v1.Models.EColi.load_ecoli_v1();
 println("Done!!!")
 
 println();
-println("Testing FBA_v1 at ξ = 1e5");
-ξmax = 1e5;
-md = Chemostat.v1.Models.EColi.DEFAULT_MAINTINANCE_DEMAND_FLUX_VALUE; #8e-5
-cost = Chemostat.v1.Models.EColi.DEFAULT_ϕ;#1e-4
-fbares = Chemostat.v1.FBA.fba_chemostat_v1(S, mets, rxns, ξmax; ϕub = cost, man_demand_flux_value = md);
+ξmax = 3e6;
+println("Testing FBA_v1 at ξ = $ξmax");
+fbares = Chemostat.v1.FBA.fba_chemostat_v1(S, mets, rxns, ξmax);
 println("Results")
 println("ϕ: $(getvalue(fbares.ϕ))");
 println("Obj: $(getvalue(fbares.obj))");

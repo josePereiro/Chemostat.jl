@@ -2,25 +2,54 @@ module Tools
 
 using DataFrames;
 
-function logrange(s,b,e)
-    r = Vector{Float64}();
-    v = s;
-    i = 0;
-    while v < e
-        push!(r, collect(b^i:b^i:b^(i+1))...);
-        v = pop!(r)*s;
-        i += 1;
+function ids_contains(ids, id; casesen = false)
+    return ids[idsindx_contains(ids, id; casesen = casesen)];
+end
+function ids_endswith(ids, id; casesen = false)
+    return ids[idsindx_endswith(ids, id; casesen = casesen)]
+end
+function idsindx_contains(ids, id; casesen = false)
+    if casesen
+        return find((rid) -> contains(rid, id), ids);
     end
-    r = r * s;
+    id = uppercase(id);
+    return find((rid) -> contains(uppercase(rid),id), ids);
+end
+function idsindx_endswith(ids, id; casesen = false)
+    if casesen
+        return find((rid) -> contains(rid, id), ids);
+    end
+    id = uppercase(id);
+    return find((rid) -> contains(uppercase(rid),id), ids);
+end
+function fluxes_nz(fvs, fids)
+    @assert length(fvs) == length(fids)
+    nz = find((fv) -> fv != 0, fvs);
+    return [(nzi ,fids[nzi], fvs[nzi]) for nzi in nz];
+end
+function printlnall(col)
+    for c in col
+        println(c);
+    end
+end
+function logrange(si::Int, ei; base = collect(1:9))
+    col = [];
+    for i in si:(ei - 1)
+        push!(col, ((base)*(10.0 ^ i))...);
+    end
+    return col;
+end
 
-    rr = Vector{Float64}();
-    for i in 1:length(r)
-        if r[i] <= e
-            push!(rr,r[i])
+function printlnall(col, info; f = 40)
+    for i in 1:length(col)
+        if i == 1
+            println(info);
+        elseif i % f == 0
+            println();
+            println(info);
         end
+        println(col[i]);
     end
-    last(rr) != e && push!(rr,e)
-    return rr;
 end
 
 export indexof;
