@@ -62,4 +62,50 @@ function indexof(df::DataFrame, id)
     return -1;
 end
 
+function findfiles(fun, dir)::Vector{AbstractString}
+
+    # Results
+    res = Vector{AbstractString}();
+
+    # dir files
+    fs = files(dir);
+    for f in fs
+        if fun(f)
+            push!(res, f);
+        end
+    end
+
+    # sub dirs
+    sds = subdirs(dir);
+    for sd in sds
+        push!(res, findfiles(fun, sd)...);
+    end
+
+    return res;
+end
+
+function finddirs(fun, dir)::Vector{AbstractString}
+
+    # Results
+    res = Vector{AbstractString}();
+
+    # sub dirs
+    sds = subdirs(dir);
+    for sd in sds
+        if fun(sd)
+            push!(res, sd)
+        end
+        push!(res, finddirs(fun, sd)...);
+    end
+
+    return res;
+end
+
+function subdirs(dir)
+    return filter((name) -> isdir(name), joinpath.(dir,readdir(dir)));
+end
+function files(dir)
+    return filter((name) -> isfile(name), joinpath.(dir,readdir(dir)));
+end
+
 end

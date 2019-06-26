@@ -1,7 +1,7 @@
 module Chemostat
 
 include("Tools.jl")
-include("Models/ModelsDataDir.jl");
+include("Models/MODELS_METADATA.jl");
 include("SteadyState.jl")
 
 include("v1.jl");

@@ -1,6 +1,6 @@
 export fba_chemostat_v1;
 function fba_chemostat_v1(S, mets, rxns, ξ;
-        ϕub::Float64 = 1.0,
+        ϕub::Float64 = 1e-4,
         multi_obj_factor = 10^5,
         verbose = false)
 

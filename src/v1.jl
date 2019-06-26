@@ -6,7 +6,7 @@ end  # module FBA
 
 module Models
     module EColi
-        include("Models/EColi/EColi_v1.jl");
+        include("Models/EColi/EColi_core_v1.jl");
     end  # module EColi
     module ToyModel
         include("Models/ToyModel/ToyModel_v1.jl");
