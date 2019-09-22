@@ -1,8 +1,8 @@
 module GEMTools
 
-include("Commons.jl");
-include("Store.jl");
-include("METS.jl");
-include("RXNS.jl");
+include("Commons/Commons.jl");
+include("Store/Store.jl");
+include("METS/METS.jl");
+include("RXNS/RXNS.jl");
 
 end  # module GEMTools

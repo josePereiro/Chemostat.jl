@@ -2,7 +2,7 @@ module Chemostat
 
 import FileIO;
 
-include("path.jl");
+include("paths.jl");
 include("GEMs/GEMs.jl")
 include("from_cossios_code/FBA/FBA.jl");
 include("from_cossios_code/EP/EP.jl");

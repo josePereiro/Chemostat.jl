@@ -24,7 +24,7 @@ function ExpRes(epress::Dict, β, description)
 
     # expres
     expres = Chemostat.ExpRess.ExpRes();
-    gem = epress["gem"];
+    gem = epress["nz_gem"];
     Chemostat.set_working_gem(gem);
 
     for (i, epres) in enumerate(epress["ep"])
