@@ -1,9 +1,9 @@
 module METS
 
-using Chemostat.GEMTools.Store;
-using Chemostat.GEMTools.Commons;
-using Chemostat.GEMs.GEM;
-using DataFrames;
+import Chemostat.GEMTools.Store;
+import Chemostat.GEMTools.Commons;
+import Chemostat.GEMs.GEM;
+import DataFrames: DataFrame;
 
 include("parsers.jl");
 include("id_querys.jl");

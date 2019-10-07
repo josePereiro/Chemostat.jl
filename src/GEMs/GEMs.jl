@@ -73,6 +73,10 @@ end
 check_format(gem) = check_format(gem.S, gem.mets, gem.rxns);
 
 function check_data_quality(S, mets, rxns)
+    # Commons
+    if !allunique([rxns[:id]; mets[:id]])
+        error("mets and rxns must have unique ids!!!"); end
+
     #S
     if isempty(S) error("S is empty!!") end;
     if !all(typeof.(S) .== Float64) error("S must contain Float64 elements.") end;
@@ -82,7 +86,6 @@ function check_data_quality(S, mets, rxns)
 
     #Mets
     # Data quality
-    if !allunique(mets[:id]) error("mets contains repeated ids!!!"); end
 
     for (i, met) in enumerate(mets[:id])
         V, L, e, y, c = mets[:V][i], mets[:L][i], mets[:e][i],
@@ -102,7 +105,6 @@ function check_data_quality(S, mets, rxns)
 
     #Rxns
     # Data quality
-    if !allunique(rxns[:id]) error("rxns contains repeated ids!!!"); end
 
     for (i, rxn) in enumerate(rxns[:id])
         pub, plb, nub, nlb, an, ap = rxns[:pub][i],rxns[:plb][i],
@@ -143,9 +145,6 @@ function check_data_quality(S, mets, rxns)
         if !isfinite(an) error("rxn $(i): $(rxn) :an = $(an) must be finite!!!"); end
 
     end
-
-    if !allunique([rxns[:id]; mets[:id]])
-        error("mets and rxns must have differents ids!!!"); end
 end
 check_data_quality(gem) = check_data_quality(gem.S, gem.mets, gem.rxns);
 
