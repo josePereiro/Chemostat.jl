@@ -10,7 +10,7 @@ function backup_working_data!()
     global backup_S = working_S;
 end
 
-function restore_data!()
+function restore_working_data!()
     if backup_gem != nothing
         global working_gem = backup_gem;
         global backup_gem = nothing;

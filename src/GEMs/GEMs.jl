@@ -79,7 +79,7 @@ function check_data_quality(S, mets, rxns)
     if all(S .== 0.0) error("All elements in S are zeros.") end;
     m, n =size(S);
     if m > n error("Error m = $m > n = $n, the system can't be determined!!!") end
-     
+
     #Mets
     # Data quality
     if !allunique(mets[:id]) error("mets contains repeated ids!!!"); end
@@ -143,6 +143,9 @@ function check_data_quality(S, mets, rxns)
         if !isfinite(an) error("rxn $(i): $(rxn) :an = $(an) must be finite!!!"); end
 
     end
+
+    if !allunique([rxns[:id]; mets[:id]])
+        error("mets and rxns must have differents ids!!!"); end
 end
 check_data_quality(gem) = check_data_quality(gem.S, gem.mets, gem.rxns);
 
