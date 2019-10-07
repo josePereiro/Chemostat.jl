@@ -1,10 +1,10 @@
 module RXNS
 
-using Chemostat.GEMTools.Store;
-using Chemostat.GEMTools.Commons;
-using Chemostat.GEMTools.METS;
-using Chemostat.GEMs.GEM;
-using DataFrames;
+import Chemostat.GEMTools.Store;
+import Chemostat.GEMTools.Commons;
+import Chemostat.GEMTools.METS;
+import Chemostat.GEMs.GEM;
+import DataFrames: DataFrame;
 
 
 include("querys.jl");

@@ -3,7 +3,7 @@ all_mets(rxn, rxns...) = union([all_mets(r) for r in Commons.collect_iders(rxn, 
 common_mets(rxn, rxns...) = intersect([all_mets(r) for r in Commons.collect_iders(rxn, rxns)]...);
 
 with_mets(met::Commons.Ider_type) = Store.get_working_S(met, :).nzind;
-with_mets(met, mets...) = intersect([with_mets(m) for m in Commons.collect_iders(rxn, rxns)]...);
+with_mets(met, mets...) = intersect([with_mets(m) for m in Commons.collect_iders(met, mets)]...);
 
 all_reacts(rxn::Commons.Ider_type) = filter((met) -> Store.get_working_S(met,rxn) < 0 , all_mets(rxn));
 all_reacts(rxn,rxns...) = union([all_reacts(r) for r in Commons.collect_iders(rxn, rxns)]...);
