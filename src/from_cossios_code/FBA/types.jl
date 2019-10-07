@@ -32,8 +32,10 @@ function ExpRes(fbasols::Vector{FBASolution}, gem::Chemostat.GEMs.GEM, descripti
         ξ = fbasol.ξ;
         Chemostat.ExpRess.add_ξ!(expres, ξ);
         Chemostat.ExpRess.set_μ!(expres, ξ, fbasol.μ);
-        Chemostat.ExpRess.set_Xv!(expres, ξ, fbasol.μ * fbasol.ξ);
-        Chemostat.ExpRess.set_D!(expres, ξ, fbasol.μ);
+        D = Chemostat.get_D(fbasol.μ);
+        Chemostat.ExpRess.set_D!(expres, ξ, D);
+        Chemostat.ExpRess.set_Xv!(expres, ξ, Chemostat.get_Xv(ξ, D));
+
         Chemostat.ExpRess.set_ϕ!(expres, ξ, fbasol.ϕ);
 
         for (i,met) in enumerate(gem.mets[:id])
@@ -70,8 +72,9 @@ function ExpRes(fbasol::FBASolution,
     ξ = fbasol.ξ;
     Chemostat.ExpRess.add_ξ!(expres, ξ);
     Chemostat.ExpRess.set_μ!(expres, ξ, fbasol.μ);
-    Chemostat.ExpRess.set_Xv!(expres, ξ, fbasol.μ * fbasol.ξ);
-    Chemostat.ExpRess.set_D!(expres, ξ, fbasol.μ);
+    D = Chemostat.get_D(fbasol.μ);
+    Chemostat.ExpRess.set_D!(expres, ξ, D);
+    Chemostat.ExpRess.set_Xv!(expres, ξ, Chemostat.get_Xv(ξ, D));
     Chemostat.ExpRess.set_ϕ!(expres, ξ, fbasol.ϕ);
     Chemostat.ExpRess.set_GEM!(expres, gem);
     Chemostat.ExpRess.set_type!(expres, :fba);

@@ -43,9 +43,9 @@ function ExpRes(epress::Dict, β, description)
         Chemostat.ExpRess.add_ξ!(expres, ξ);
         μ = flxs_ave[find_ep_flx(epres, biomassid)];
         Chemostat.ExpRess.set_μ!(expres, ξ, μ);
-        D = μ / ϕ;
+        D = Chemostat.get_D(fbasol.μ);
         Chemostat.ExpRess.set_D!(expres, ξ, D);
-        Chemostat.ExpRess.set_Xv!(expres, ξ, ξ * D);
+        Chemostat.ExpRess.set_Xv!(expres, ξ, Chemostat.get_Xv(ξ, D));
         Chemostat.ExpRess.set_ϕ!(expres, ξ, NaN);
         Chemostat.ExpRess.set_GEM!(expres, gem);
         Chemostat.ExpRess.set_type!(expres, :ep);
