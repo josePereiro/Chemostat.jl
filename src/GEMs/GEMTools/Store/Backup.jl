@@ -3,14 +3,14 @@ backup_mets = nothing;
 backup_rxns = nothing;
 backup_S = nothing;
 
-function backup_working_data()
+function backup_working_gem()
     global backup_gem = working_gem;
     global backup_mets = working_mets;
     global backup_rxns = working_rxns;
     global backup_S = working_S;
 end
 
-function restore_working_data!()
+function restore_working_gem!()
     if backup_gem != nothing
         global working_gem = backup_gem;
         global backup_gem = nothing;
