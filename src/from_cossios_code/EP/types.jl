@@ -24,7 +24,7 @@ function ExpRes(epress::Dict, β, description)
 
     # expres
     expres = Chemostat.ExpRess.ExpRes();
-    gem = epress["nz_gem"];
+    gem = epress["gem"];
     Chemostat.set_working_gem(gem);
 
     for (i, epres) in enumerate(epress["ep"])
@@ -43,7 +43,7 @@ function ExpRes(epress::Dict, β, description)
         Chemostat.ExpRess.add_ξ!(expres, ξ);
         μ = flxs_ave[find_ep_flx(epres, biomassid)];
         Chemostat.ExpRess.set_μ!(expres, ξ, μ);
-        D = Chemostat.get_D(fbasol.μ);
+        D = Chemostat.get_D(μ);
         Chemostat.ExpRess.set_D!(expres, ξ, D);
         Chemostat.ExpRess.set_Xv!(expres, ξ, Chemostat.get_Xv(ξ, D));
         Chemostat.ExpRess.set_ϕ!(expres, ξ, NaN);
