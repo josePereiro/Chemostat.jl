@@ -13,9 +13,11 @@ function nonzero_reduce_model(S, mets, rxns, ξ_ub)
     LP = gurobi_problem(S, mets, rxns)
     nz_rxns_idx = Set{Int}()
     for ξ = 0.01 : nonzero_reduce_model_Δξ : ξ_ub - nonzero_reduce_model_Δξ
-        fbasol = model_solve!(LP, S, mets, rxns, ξ)
+        fbasol = model_solve!(LP, S, mets, rxns, ξ);
         for (k, rxn) in enumerate(DataFrames.eachrow(rxns))
-            iszero(fbasol.r[k]) || push!(nz_rxns_idx, k)
+            if !iszero(fbasol.r[k])
+                push!(nz_rxns_idx, k)
+            end
         end
     end
 

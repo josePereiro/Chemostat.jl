@@ -32,8 +32,8 @@ function fba_w_mc_chemostat(gem::Chemostat.GEMs.GEM, ξs;
     verbose && println("Executing FBAwMC");
     verbose && println();
     for (i,ξ) in enumerate(Float64.(ξs))
-        verbose && println("Analazing ξ = $(ξ) [$i/$(length(ξs))]");
         fbasols[i] = model_solve!(LP, gem.S,gem.mets, gem.rxns, ξ)
+        verbose && println("ξ = $(ξ) [$i/$(length(ξs))] μ: $(fbasols[i].μ)");
         verbose && flush(STDOUT);
     end
     verbose && println();
