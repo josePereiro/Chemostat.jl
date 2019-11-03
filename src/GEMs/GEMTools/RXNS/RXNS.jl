@@ -12,6 +12,6 @@ include("id_querys.jl");
 include("parsers.jl");
 include("getters.jl");
 include("setters.jl");
-
+include("show_info.jl");
 
 end # module RXNS

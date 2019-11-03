@@ -10,5 +10,7 @@ include("id_querys.jl");
 include("querys.jl");
 include("setters.jl");
 include("getters.jl");
+include("show_info.jl");
+
 
 end
