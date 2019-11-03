@@ -22,3 +22,6 @@ function show_exchanges(expres, ξ::Float64)
     Chemostat.ExpRess.restore_working_expres!();
 
 end
+show_exchanges(ξ::Float64) = show_exchanges(get_working_expres(),ξ);
+show_exchanges(expres, ξi::Int) = show_exchanges(expres, get_ξ(ξi));
+show_exchanges(ξi::Int) = show_exchanges(get_working_expres(), ξi);
