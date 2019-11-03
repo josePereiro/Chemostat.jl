@@ -3,7 +3,7 @@ module METS
 import Chemostat.GEMTools.Store;
 import Chemostat.GEMTools.Commons;
 import Chemostat.GEMs.GEM;
-import DataFrames: DataFrame;
+import DataFrames: DataFrame, eachrow;
 
 include("parsers.jl");
 include("id_querys.jl");

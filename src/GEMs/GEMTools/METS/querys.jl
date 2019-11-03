@@ -19,3 +19,6 @@ consumable() = consumable(Store.get_working_mets());
 
 secretable(mets_df) = find((L) -> L < 0.0, mets_df[:L]);
 secretable() = secretable(Store.get_working_mets());
+
+exchangeable(mets_df) = find((row) -> row[:L] < 0.0 && row[:V] > 0.0, eachrow(mets_df));
+exchangeable() = exchangeable(Store.get_working_mets());
