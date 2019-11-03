@@ -2,7 +2,7 @@ module ExpRess
 
 using Chemostat;
 
-include("ExpRessTools.jl")
+include("ExpRessTools/ExpRessTools.jl")
 
 
 end
