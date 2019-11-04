@@ -2,6 +2,8 @@ function show_exchanges(expres, ξ::Float64)
     Chemostat.GEMTools.Store.backup_working_gem();
     Chemostat.GEMTools.Store.set_working_gem(Chemostat.ExpRess.get_GEM(expres));
     Chemostat.ExpRess.backup_working_express();
+    Chemostat.ExpRess.set_working_expres(expres);
+
 
     mets = Chemostat.METS.exchangeable();
 
