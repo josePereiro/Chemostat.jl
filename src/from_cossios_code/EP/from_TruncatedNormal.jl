@@ -12,7 +12,7 @@ distribution.
 function tnmean end
 
 # delete this
-t = 0;
+# t = 0;
 
 function tnmean(a, b)
     if a < b
@@ -23,7 +23,7 @@ function tnmean(a, b)
         # throw(ArgumentError("a must be < b"))
 
         # Delete, this is a test
-        if time() - t > 1.0 println("Delete, this is a test"); global t = time(); end
+        # if time() - t > 1.0 println("Delete, this is a test"); global t = time(); end
         tnmean(b,a);
     end
 end
