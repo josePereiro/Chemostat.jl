@@ -2,6 +2,18 @@
     This module performs Flux Balance Analysis (FBA)
     assembled to the Chemostat model 
     
+    Preferences
+    Fernandez-de-Cossio-Diaz, Jorge, Kalet Leon, and Roberto Mulet. 
+    “Characterizing Steady States of Genome-Scale Metabolic Networks 
+    in Continuous Cell Cultures.” PLoS Computational Biology 13, no. 11 (2017): 1–22. 
+    https://doi.org/10.1371/journal.pcbi.1005835.
+
+    Fernandez-de-Cossio-Diaz, Jorge, and Roberto Mulet. 
+    “Maximum Entropy and Population Heterogeneity in Continuous 
+    Cell Cultures.” PLOS Computational Biology 15, no. 2 (February 27, 2019): 
+    e1006823. https://doi.org/10.1371/journal.pcbi.1006823.
+
+    
     The metabolic network has this layout:
     
     m: metabolites
