@@ -39,8 +39,9 @@
         max μ 
         s.t. 
             W⋅x = [e,0] and 0 ≤ x ≤ upper.
+        where 
             x = [r+, r-, u, μ, ϕ]
-
+        
     the meaning of stuff:
         u > 0 (up-taking)
         u < 0 (excretion)
