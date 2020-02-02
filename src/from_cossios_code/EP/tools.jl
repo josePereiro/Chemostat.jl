@@ -26,3 +26,26 @@ function get_flxs_ave(epres, β, flx)
 end
 
 get_expres(epress::Dict, β; description = "") = ExpRes(epress, β, description);
+
+function find_β(epsol, ξ, desired_val;β = 1e3, epz = 1e-3, maxitr = 100,
+        target_fun = 
+            (express) -> Chemostat.ExpRess.get_μ(express, 
+                findfirst(Chemostat.ExpRess.get_ξs(express), ξ)))
+    
+    c = 0
+    while true
+        expres = Chemostat.EP.get_expres(epsol, β)
+        predicted_val = target_fun(expres)
+        
+        if abs(predicted_val - desired_val) < epz
+             return β
+        end
+        
+        β = abs(desired_val/predicted_val) * β
+        if c > maxitr
+            return -1
+        end
+        c+= 1
+    end
+    
+end
