@@ -31,6 +31,8 @@ function ep_init_rev(S, mets, rxns, fbasol)
     end
 
     # collect rxns data [fwd_rxn; rev_bkwd_rxn]
+    # plb <= r+ <= pub
+    # -nlb <= r- <= -nub
     rxnlb = [rxns[:plb]; -rxns[:nlb][rev_idx]]
     rxnub = [rxns[:pub]; -rxns[:nub][rev_idx]]
     a = [rxns[:ap]; rxns[:an][rev_idx]]
@@ -39,9 +41,9 @@ function ep_init_rev(S, mets, rxns, fbasol)
     for (i, rxn_i) in enumerate([1:n; rev_idx])
         lb = rxnlb[i]
         ub = rxnub[i]
-        rxn_id = rxn[:id][rxn_i]
+        rxn_id = rxns[:id][rxn_i]
 
-        if lb < ub
+        if !(lb < ub)
             error("Error checking lb < ub: lb ($lb), ub ($ub), rxn_id ($rxn_id)")
         end
     end
@@ -64,13 +66,13 @@ function ep_init_rev(S, mets, rxns, fbasol)
         fba_u = fbasol.u[exch_i]
         met_id = mets[:id][exch_i]
 
-        if upk_lb < upk_ub
+        if !(upk_lb < upk_ub)
             error("Error checking upk_lb < upk_ub: upk_lb ($upk_lb), upk_ub ($upk_ub), met_id (met_id)")
         end
-        if upk_lb ≤ 0 ≤ upk_ub
+        if !(upk_lb ≤ 0 ≤ upk_ub)
             error("Error checking upk_lb ≤ 0 ≤ upk_ub: upk_lb ($upk_lb), upk_ub ($upk_ub), met_id (met_id)")
         end
-        if upk_lb ≤ fba_u ≤ upk_ub
+        if !(upk_lb ≤ fba_u ≤ upk_ub)
             error("Error checking upk_lb ≤ fba_u ≤ upk_ub: upk_lb ($upk_lb), upk_ub ($upk_ub), fba_u ($fba_u), met_id (met_id)")
         end
 
