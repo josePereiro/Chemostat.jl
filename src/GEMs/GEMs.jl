@@ -148,5 +148,18 @@ function check_data_quality(S, mets, rxns)
 end
 check_data_quality(gem) = check_data_quality(gem.S, gem.mets, gem.rxns);
 
+function to_csv(gem, files_prefix::String; delim = '\t')
+    
+    if files_prefix == ""
+        error("You most specify a files_prefix!!!")
+    end
+    
+    i,k,s = findnz(gem.S)
+    S_df = DataFrame(Dict("i"=> i, "k" => k, "s" => s));
+    CSV.write(files_prefix * ".S.csv", S_df, delim = delim)
+    CSV.write(files_prefix * ".mets.csv", gem.mets, delim = delim)
+    CSV.write(files_prefix * ".rxns.csv", gem.rxns, delim = delim)
+    
+end
 
 end  # module GEMs

@@ -1,6 +1,5 @@
 function ep(gem::Chemostat.GEMs.GEM, ξs;
-        β = 1e12, maxiter = 100000, epsconv = 1e-7,
-        verbose = true)
+        β = 1e12, maxiter = 100000, epsconv = 1e-7)
 
     #Cheking data
     # Checking
@@ -34,8 +33,7 @@ end
 
 function ep(gem::Chemostat.GEMs.GEM; ξ_lb = 1, ξs_to_include = [],
         sample_approx_len = 25, β = 1e12, maxiter = 100000,
-        epsconv = 1e-7,
-        verbose = true)
+        epsconv = 1e-7)
 
     # Checking
     verbose && println("Checking gem data quality!!!");
@@ -58,6 +56,5 @@ function ep(gem::Chemostat.GEMs.GEM; ξ_lb = 1, ξs_to_include = [],
     verbose && flush(STDOUT);
 
     #EP
-    return ep(gem, ξs, β = β, maxiter = maxiter, epsconv = epsconv,
-        verbose = verbose)
+    return ep(gem, ξs, β = β, maxiter = maxiter, epsconv = epsconv)
 end
