@@ -1,4 +1,4 @@
-function to_csv(expres, file_name)
+function to_csv(expres, file_name; delim = "\t")
     
     try
     
@@ -22,7 +22,7 @@ function to_csv(expres, file_name)
             push!(head_line, "r_$rxn")
         end
         
-        push!(data, join(head_line, ","))
+        push!(data, join(head_line, delim))
 
         # data
         for ξ in Chemostat.ExpRess.get_ξs()
@@ -42,7 +42,7 @@ function to_csv(expres, file_name)
                 push!(ξ_line, Chemostat.ExpRess.get_r(ξ, rxn))
             end
             
-            push!(data, join(ξ_line, ","))
+            push!(data, join(ξ_line, delim))
 
         end
 
@@ -55,4 +55,4 @@ function to_csv(expres, file_name)
     end
     
 end
-to_csv(file_name::String) = to_csv(get_working_expres(), file_name);
+to_csv(file_name::String; delim = "\") = to_csv(get_working_expres(), file_name; delim = delim);
