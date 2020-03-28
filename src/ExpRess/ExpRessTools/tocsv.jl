@@ -8,7 +8,8 @@ function to_csv(expres, file_name; delim = "\t")
         data = []
 
         # Observables 
-        head_line = ["ξ", "μ", "Xv"]
+        head_line = ["ξ", "μ", "Xv", "β"]
+
         
         # mets
         for met in Chemostat.ExpRess.get_mets_ids()
@@ -28,7 +29,9 @@ function to_csv(expres, file_name; delim = "\t")
         for ξ in Chemostat.ExpRess.get_ξs()
             
             # Observables
-            ξ_line = [ξ, Chemostat.ExpRess.get_μ(ξ), Chemostat.ExpRess.get_Xv(ξ)]
+            ξ_line = [ξ, Chemostat.ExpRess.get_μ(ξ), 
+                Chemostat.ExpRess.get_Xv(ξ), 
+                Chemostat.ExpRess.get_β()]
 
             # mets
             for met in Chemostat.ExpRess.get_mets_ids()
