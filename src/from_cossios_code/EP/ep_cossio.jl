@@ -30,7 +30,7 @@ function ep_init_rev(S, mets, rxns, fbasol)
         end
     end
 
-    # collect rxns data [fwd_rxn; rev_bkwd_rxn]
+    # collect rxns data [rxn; rev_rxn]
     # plb <= r+ <= pub
     # -nlb <= r- <= -nub
     rxnlb = [rxns[:plb]; -rxns[:nlb][rev_idx]]
@@ -100,7 +100,7 @@ function ep_init_rev(S, mets, rxns, fbasol)
     # [(m + 1) x 1]
     b = [mets[:e]; 0.];
 
-    # Total bounds [(n + nrev + m + nexch + 1 + 1) x 1]
+    # Total bounds [((n + nrev) + (m + nexch) + 1 + 1) x 1]
     lb = [rxnlb; uptake_lb; 0.; 0.];
     ub = [rxnub; uptake_ub; fbasol.μ; fbasol.ϕ];
 
